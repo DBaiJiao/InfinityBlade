@@ -17,6 +17,8 @@ public class CheckDir : MonoBehaviour
     public direction dir;
 
     public PlayMakerFSM fsm;
+
+    public float checkLength;
     
     // Start is called before the first frame update
     void Start()
@@ -53,14 +55,15 @@ public class CheckDir : MonoBehaviour
         {
             Vector2 currPosition = Input.mousePosition;
 
-            if (currPosition.x > lastPosition.x)
+            if (currPosition.x > lastPosition.x + checkLength)
             {
                 dir = direction.right;
             }
-            if (currPosition.x < lastPosition.x)
+            if (currPosition.x < lastPosition.x - checkLength)
             {
                 dir = direction.left;
             }
+            lastPosition = currPosition;
         }
         if (Input.GetMouseButtonUp(0))
         {
